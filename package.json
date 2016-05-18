@@ -1,0 +1,27 @@
+{
+  "name": "bt-03",
+  "version": "0.0.1",
+  "description": "a breakable toy - playing around with Firebase",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rheaditi/BT03.git"
+  },
+  "keywords": [
+    "breakable",
+    "toy",
+    "firebase"
+  ],
+  "author": "Aditi (@rheaditi)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/rheaditi/BT03/issues"
+  },
+  "homepage": "https://github.com/rheaditi/BT03#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
