@@ -1,0 +1,33 @@
+# Tell Travis that we're using Javascript with NodeJS
+language: node_js
+# Which versions of NodeJS we want to test with:
+#   Specify versions as "5" or "5.1" or "5.1.1" etc.
+#   Choosing “5” or “4” will use the latest version available in the 5.x or 4.x releases.
+#   Specifying node will run using the latest stable Node.js release.
+node_js:
+  - "5"
+  - "6"
+
+# The Build Cycle: 
+# Each build on Travis has 2 steps - 
+# 1. 'install' (to install dependencies required) and script
+# 2. 'script' (to run the build step)
+
+# If all steps are customized, you might have 10 different steps in the complete build cycle:
+# 1. Install `apt addons`
+# 2. `before_install`
+# 3. `install`
+# 4. `before_script`
+# 5. `script`
+# 6. `after_success` or `after_failure`
+# 7. OPTIONAL `before_deploy`
+# 8. OPTIONAL `deploy`
+# 9. OPTIONAL `after_deploy`
+# 10. `after_script`
+
+# before_script: install all the dependencies using npm
+before_script:
+    - npm install
+
+# script: command that runs the build script using Karma in this case.
+script: node_modules/karma/bin/karma start karma.conf.js --single-run
