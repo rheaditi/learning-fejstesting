@@ -6,7 +6,6 @@ language: node_js
 #   Specifying node will run using the latest stable Node.js release.
 node_js:
   - "5"
-  - "6"
 
 # The Build Cycle: 
 # Each build on Travis has 2 steps - 
@@ -25,9 +24,10 @@ node_js:
 # 9. OPTIONAL `after_deploy`
 # 10. `after_script`
 
-# before_script: install all the dependencies using npm
-before_script:
-    - npm install
+# Travis supports running a real browser (Firefox) with a virtual screen:
+before_install:
+    - export DISPLAY=:99.0
+    - sh -e /etc/init.d/xvfb start
 
 # script: command that runs the build script using Karma in this case.
 script: node_modules/karma/bin/karma start karma.conf.js --single-run

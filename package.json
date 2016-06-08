@@ -1,13 +1,13 @@
 {
   "name": "bt-03",
   "version": "1.0.0",
-  "description": "a breakable toy - learning Karma + (x - some unit testing FW) + Travis CI",
+  "description": "a breakable toy - learning Karma + Jasmine + Travis CI",
   "engines": {
     "node": "5.6.0"
   },
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+   "test": "karma start --single-run --no-auto-watch --browsers Firefox"
   },
   "repository": {
     "type": "git",
