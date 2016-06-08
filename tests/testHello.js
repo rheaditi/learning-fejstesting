@@ -13,6 +13,11 @@ describe('Testing Hello Sayer', function(){
 		expect(helloString).toBeDefined()
 		expect(helloString).not.toBeNull();
 		expect(helloString).toBe('Hello there, Aditi!');
+
+		helloString = sayHello('Rhea');
+		expect(helloString).toBeDefined()
+		expect(helloString).not.toBeNull();
+		expect(helloString).toBe('Hello there, Rhea!');
 	});
 
 });
