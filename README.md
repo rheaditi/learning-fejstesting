@@ -16,14 +16,11 @@ From here on, are the steps I've followed from different tutorials around the we
 
 ### 1. Grab the Pre-Requisites
 
-1. NodeJS: [download](https://nodejs.org/en/download/) if you don't have already. 
-2. A GitHub :octocat: repository with `npm init`-ed/existing project.
-3. [Jasmine](http://jasmine.github.io/)
-```
- $ npm install jasmine-core --save-dev
-```
-4. [Karma](https://karma-runner.github.io) and its plugins:
- ```
+* NodeJS: [download](https://nodejs.org/en/download/) if you don't have already. 
+* A GitHub :octocat: repository with `npm init`-ed/existing project.
+* [Jasmine](http://jasmine.github.io/) `$ npm install jasmine-core --save-dev`
+* [Karma](https://karma-runner.github.io) and its plugins:
+ ```sh
  # Install Karma-CLI for global usage
  $ npm install -g karma-cli
  
@@ -75,7 +72,7 @@ The warning `no file matching this pattern` comes only if you don't have the `js
 ### 3. Configuring Travis
 First, login to [Travis CI](https://travis-ci.org/) and add your repository to it.
 
-Create the `.travis.yml` file (mind the leading period - it'll be a hidden file):
+Create the `.travis.yml` file (mind the leading period):
 ```yml
 language: node_js
 node_js:
@@ -86,3 +83,82 @@ before_install:
 ```
 
 The different parts of this `.travis.yml` file are explained as comments in this repository's `.travis.yml` file. Check it out [here](./.travis.yml).
+
+### 4. Testable Code
+
+According to how we've currently configured Karma, the input files are in `js/` directory and the test specs are in `tests/`.
+Here's some sample code to be tested, `js/hello.js`:
+
+```js
+/* A tiny simple javascript fuction that says hello if you pass it your name as a String. It just returns the corresponding greeting as a String too. */
+function sayHello(name){
+	return 'Hello there, ' + name + '!';
+}
+```
+
+### 5. Writing the Test Suite with Specs
+
+Now, we're using Jasmine to write code that will test our previous code. This, now, goes in `tests/testHello.js`:
+```js
+/* A test suite 'Testing Hello Sayer' which tests if it 'Says Hello'. */
+describe('Testing Hello Sayer', function(){
+
+	it('Says Hello', function(){
+		var helloString = sayHello('Aditi');
+		expect(helloString).toBeDefined()
+		expect(helloString).not.toBeNull();
+		expect(helloString).toBe('Hello there, Aditi!');
+
+		helloString = sayHello('Rhea');
+		expect(helloString).toBeDefined()
+		expect(helloString).not.toBeNull();
+		expect(helloString).toBe('Hello there, Rhea!');
+	});
+
+});
+```
+
+There's more info given as comments in the actual file in this repository. Check it out [here](./tests/testHello.js).
+
+### 6. Setting up the tests to work with npm
+
+ Add this line to your `package.json`:
+ ```json
+ // ...
+ "scripts": {
+   "test": "karma start --single-run --no-auto-watch --browsers Firefox"
+  }
+  // ...
+  ```
+
+This lets npm know how to run tests for this particular project.
+
+### 7. Run the Tests
+
+Finally, we should now be in a position to run `npm test` or `karma start` in order to execute and see the test results.
+Running it, we might get some output like:
+```sh
+08 06 2016 19:49:12.443:INFO [karma]: Karma v0.13.22 server started at http://localhost:9876/
+08 06 2016 19:49:12.461:INFO [launcher]: Starting browser Firefox
+08 06 2016 19:49:16.563:INFO [Firefox 45.0.0 (XXX)]: Connected on socket XXX with id XXX
+Firefox 45.0.0 (XXX): Executed 1 of 1 SUCCESS (0.004 secs / 0.002 secs)
+```
+
+Nice. Success! =)
+
+### 8. On Push
+
+Once Travis is configured, it listens for pushes on the master branch. For a new push, it tries to execute the build (in this case karma) and you can see this activity on your Travis dashboard.
+
+## Notes
+
+* To get the build status badge. For eg: [![Build Status](https://travis-ci.org/rheaditi/BT03.svg?branch=master)](https://travis-ci.org/rheaditi/BT03)  
+ You need to go to your Travis dashboard, go to the corresponding repository, and click on the build badge next to the name of the repo. From there, Travis will give you options on how to get the badge for use in different places. Select markdown to get it for GitHub markdown, and it can be added to your `README.md` file. =)
+
+* See any errors? Want to suggest some changes? Fork and submit a pull request. =)
+
+## Sources
+- [SitePoint post](https://www.sitepoint.com/testing-javascript-jasmine-travis-karma/)
+- [Jasmine Docs](http://jasmine.github.io/2.4/introduction.html)
+- [TravisCI Docs](https://docs.travis-ci.com/)
+- [Karma Docs](https://karma-runner.github.io/0.13/intro/installation.html)
