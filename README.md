@@ -1,15 +1,28 @@
 [![Build Status](https://travis-ci.org/rheaditi/BT03.svg?branch=master)](https://travis-ci.org/rheaditi/BT03)
 
-# BT-03
+# BT-03 - Javascript Unit Testing
 
-## Pre-requisites
-1. NodeJS
-2. GitHub repository :octocat: with `npm init`-ed project or an existing project.
-3. Jasmine
+Just a demonstrative repository (a [breakable toy](http://chimera.labs.oreilly.com/books/1234000001813/ch05.html#breakable_toys), if you will) while & for learning Front-End Javascript testing using Karma, Jasmine and TravisCI.
+
+## How-To: Run this locally
+
+* Fork/clone this repo.
+* Run `npm install`
+* Run `npm test`
+
+## How-To: Set Up for Yourself
+
+From here on, are the steps I've followed from different tutorials around the web and the docs of the frameworks used. :smile:
+
+### 1. Grab the Pre-Requisites
+
+1. NodeJS: [download](https://nodejs.org/en/download/) if you don't have already. 
+2. A GitHub :octocat: repository with `npm init`-ed/existing project.
+3. [Jasmine](http://jasmine.github.io/)
 ```
  $ npm install jasmine-core --save-dev
 ```
-4. Karma & its plugins:
+4. [Karma](https://karma-runner.github.io) and its plugins:
  ```
  # Install Karma-CLI for global usage
  $ npm install -g karma-cli
@@ -24,52 +37,42 @@
  $ npm install karma-jasmine karma-chrome-launcher --save-dev
  ```
 
-### Configuring Karma
+### 2. Configuring Karma
 
-Generate the config file with `karma init`
+The simplest way is to generate the configuration file with `karma init`. By default, this file generated is called `karma.conf.js`. Lets run:
 ```
 $ karma init
 ```
-A series of questions to set up the inital config file ensues.  
-Example answers:
+
+It poses a series of questions to help set up the inital configuration.  
+Example answers I used (in case there's any confusion):
 ```
 Which testing framework do you want to use ?
-Press tab to list possible options. Enter to move to the next question.
 > jasmine
 
 Do you want to use Require.js ?
-This will add Require.js plugin.
-Press tab to list possible options. Enter to move to the next question.
 > no
 
 Do you want to capture any browsers automatically ?
-Press tab to list possible options. Enter empty string to move to the next question.
 > Firefox
-> 
 
 What is the location of your source and test files ?
-You can use glob patterns, eg. "js/*.js" or "test/**/*Spec.js".
-Enter empty string to move to the next question.
 > js/*.js
 > tests/**/*.js
 08 06 2016 17:43:14.925:WARN [init]: There is no file matching this pattern.
-
 > 
 
 Should any of the files included by the previous patterns be excluded ?
-You can use glob patterns, eg. "**/*.swp".
-Enter empty string to move to the next question.
 > 
 
 Do you want Karma to watch all the files and run the tests on change ?
-Press tab to list possible options.
-> yes
-
-
+> no
 Config file generated at "/path/to/project/karma.conf.js".
 ```
 
-### Configure Travis
+The warning `no file matching this pattern` comes only if you don't have the `js` and `tests` directories and/or their files. We can ignore this for now.
+
+### 3. Configuring Travis
 First, login to [Travis CI](https://travis-ci.org/) and add your repository to it.
 
 Create the `.travis.yml` file (mind the leading period - it'll be a hidden file):
@@ -81,3 +84,5 @@ before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 ```
+
+The different parts of this `.travis.yml` file are explained as comments in this repository's `.travis.yml` file. Check it out [here](./.travis.yml).
