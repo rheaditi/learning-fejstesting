@@ -32,3 +32,8 @@ before_install:
 # allow npm test to start the script instead 
 # script: command that runs the build script using Karma in this case.
 # script: node_modules/karma/bin/karma start karma.conf.js --single-run
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
