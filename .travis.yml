@@ -29,5 +29,6 @@ before_install:
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
 
+# allow npm test to start the script instead 
 # script: command that runs the build script using Karma in this case.
-script: node_modules/karma/bin/karma start karma.conf.js --single-run
+# script: node_modules/karma/bin/karma start karma.conf.js --single-run
