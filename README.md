@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/rheaditi/BT03.svg?branch=master)](https://travis-ci.org/rheaditi/BT03)
 
-# BT-03 - Javascript Unit Testing
+# BT-01 - Javascript Unit Testing
 
 Just a demonstrative repository (a [breakable toy](http://chimera.labs.oreilly.com/books/1234000001813/ch05.html#breakable_toys), if you will) while & for learning Front-End Javascript testing using Karma, Jasmine and TravisCI.
 
